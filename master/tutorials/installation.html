@@ -8,13 +8,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Installation Tutorial &mdash; sphinx-graphql 0.0+untagged.g86d9120 documentation</title>
+  <title>Installation Tutorial &mdash; sphinx-graphql 0.0+untagged.g183cb13 documentation</title>
   
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/graphiql@1.0.3/graphiql.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
 
   
@@ -37,13 +38,17 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/react@16.13.1/umd/react.production.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.production.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/graphiql@1.0.3/graphiql.min.js"></script>
+        <script src="../_static/attachGraphiQL.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="How to accomplish a task" href="../how-to/accomplish-a-task.html" />
+    <link rel="next" title="Embed a GraphiQL View" href="../how-to/embed-graphiql.html" />
     <link rel="prev" title="sphinx-graphql" href="../index.html" /> 
 </head>
 
@@ -109,12 +114,13 @@
 <li class="toctree-l2"><a class="reference internal" href="#check-your-version-of-python">Check your version of python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#create-a-virtual-environment">Create a virtual environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installing-the-library">Installing the library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#including-in-sphinx-documentation">Including in Sphinx Documentation</a></li>
 </ul>
 </li>
 </ul>
 <p class="caption"><span class="caption-text">How-to Guides</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../how-to/accomplish-a-task.html">How to accomplish a task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how-to/embed-graphiql.html">Embed a GraphiQL View</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Explanations</span></p>
 <ul>
@@ -242,6 +248,19 @@ You can check the version that has been installed by typing:</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="including-in-sphinx-documentation">
+<h2>Including in Sphinx Documentation<a class="headerlink" href="#including-in-sphinx-documentation" title="Permalink to this headline">¶</a></h2>
+<p>Add the extension to the <code class="docutils literal notranslate"><span class="pre">extensions</span></code> list in the <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file for your documentation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># &lt;Preexisting config&gt;</span>
+    <span class="o">...</span><span class="p">,</span>
+
+    <span class="c1"># Utilities for documenting GraphQL APIs</span>
+    <span class="s2">&quot;sphinx_graphql&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -250,7 +269,7 @@ You can check the version that has been installed by typing:</p>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../how-to/accomplish-a-task.html" class="btn btn-neutral float-right" title="How to accomplish a task" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../how-to/embed-graphiql.html" class="btn btn-neutral float-right" title="Embed a GraphiQL View" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="../index.html" class="btn btn-neutral float-left" title="sphinx-graphql" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
