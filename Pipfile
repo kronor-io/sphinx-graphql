@@ -6,7 +6,6 @@ verify_ssl = true
 [dev-packages]
 # Pinning black stops us having to allow pre-releases globally
 black = "==19.10b0"
-
 # Pins to make lockfile usable on multiple Python versions and platforms
 mypy = "*"
 atomicwrites = "*"
@@ -20,6 +19,8 @@ pytest-black = "*"
 flake8-isort = "*"
 isort = ">5.0"
 sphinx-rtd-theme = "*"
+sphinx-testing = "*"
+types-docutils = "*"
 
 [packages]
 # All other package requirements from setup.cfg
