@@ -46,7 +46,7 @@ extensions = [
     # Adds the inheritance-diagram generation directive
     "sphinx.ext.inheritance_diagram",
     # Adds this library so that we can demo it in the documentation
-    "sphinx_graphql",
+    "sphinx_graphql.graphiql",
 ]
 
 # If true, Sphinx will warn about all references where the target cannot

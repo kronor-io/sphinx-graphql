@@ -1,1 +1,1 @@
-extensions = ["sphinx_graphql"]
+extensions = ["sphinx_graphql.graphiql"]

@@ -8,7 +8,7 @@ from sphinx.testing.util import SphinxTestApp
 def test_build_with_static_graphiql(
     app: SphinxTestApp, status: StringIO, warning: StringIO
 ) -> None:
-    print(f"app: {type(app)}, status: {type(status)}, warning: {type(warning)}")
+    app.warningiserror = True
     app.builder.build_all()
 
 
@@ -16,4 +16,5 @@ def test_build_with_static_graphiql(
 def test_build_with_live_graphiql(
     app: SphinxTestApp, status: StringIO, warning: StringIO
 ) -> None:
+    app.warningiserror = True
     app.builder.build_all()
