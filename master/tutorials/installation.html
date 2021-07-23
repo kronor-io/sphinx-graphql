@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Installation Tutorial &mdash; sphinx-graphql 0.0+untagged.g183cb13 documentation</title>
+  <title>Installation Tutorial &mdash; sphinx-graphql 0.1+1.gcb05df1 documentation</title>
   
 
   
@@ -250,13 +250,14 @@ You can check the version that has been installed by typing:</p>
 </div>
 <div class="section" id="including-in-sphinx-documentation">
 <h2>Including in Sphinx Documentation<a class="headerlink" href="#including-in-sphinx-documentation" title="Permalink to this headline">¶</a></h2>
-<p>Add the extension to the <code class="docutils literal notranslate"><span class="pre">extensions</span></code> list in the <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file for your documentation.</p>
+<p>Add the desired components of extension to the <code class="docutils literal notranslate"><span class="pre">extensions</span></code> list in the <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file for your documentation.
+For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
     <span class="c1"># &lt;Preexisting config&gt;</span>
     <span class="o">...</span><span class="p">,</span>
 
-    <span class="c1"># Utilities for documenting GraphQL APIs</span>
-    <span class="s2">&quot;sphinx_graphql&quot;</span><span class="p">,</span>
+    <span class="c1"># Directive for embedding GraphiQL view in documentation</span>
+    <span class="s2">&quot;sphinx_graphql.graphiql&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 </pre></div>
 </div>

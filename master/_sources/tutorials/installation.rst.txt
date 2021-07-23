@@ -50,7 +50,8 @@ You can check the version that has been installed by typing::
 Including in Sphinx Documentation 
 ---------------------------------
 
-Add the extension to the ``extensions`` list in the ``conf.py`` file for your documentation.
+Add the desired components of extension to the ``extensions`` list in the ``conf.py`` file for your documentation.
+For example:
 
 .. code-block:: python
 
@@ -58,6 +59,6 @@ Add the extension to the ``extensions`` list in the ``conf.py`` file for your do
         # <Preexisting config>
         ...,
         
-        # Utilities for documenting GraphQL APIs
-        "sphinx_graphql",
+        # Directive for embedding GraphiQL view in documentation
+        "sphinx_graphql.graphiql",
     ]
