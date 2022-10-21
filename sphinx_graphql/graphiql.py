@@ -9,36 +9,40 @@ class SphinxGraphiQL(Directive):
     has_content = False
     required_arguments = 0
     optional_arguments = 1  # endpoint
-    option_spec = {"height": int, "query": str, "response": str}
+    option_spec = {
+        "height": int,
+        "query": str,
+        "response": str,
+        "variables": str,
+        "headers": str,
+    }
 
     def run(self):
         if self.arguments:
-            self.options["endpoint"] = f'"{self.arguments[0].strip()}"'
+            self.options["endpoint"] = f"{self.arguments[0].strip()}"
         else:
-            self.options["endpoint"] = "undefined"
-        self.options.setdefault("height", 325)
+            self.options["endpoint"] = ""
+        self.options.setdefault("height", 355)
+        self.options.setdefault("variables", "")
+        self.options.setdefault("headers", "")
         raw_content = (
             """
-<style>
-.graphiql {
-    height: %(height)dpx;
-    margin: 0 0 24px 0;
-}
-.graphiql-container .secondary-editor, .graphiql-container .toolbar,
-.graphiql-ro .execute-button, .graphiql-ro .docExplorerShow {
-    display: none
-}
-</style>
-<div id="graphiql" class="graphiql">
+<div class="sphinx-graphiql" style="height:%(height)dpx">
     Loading GraphiQL...
-    <div class="query">
+    <script type="text/plain" class="query">
 %(query)s
-    </div>
-    <div class="response">
+    </script>
+    <script type="text/plain" class="response">
 %(response)s
-    </div>
-    <script>
-        attachGraphiQL(document.currentScript.parentNode, %(endpoint)s);
+    </script>
+    <script type="text/plain" class="variables">
+%(variables)s
+    </script>
+    <script type="text/plain" class="headers">
+%(headers)s
+    </script>
+    <script type="text/plain" class="endpoint">
+        %(endpoint)s
     </script>
 </div>
 """
@@ -54,14 +58,10 @@ class SphinxGraphiQL(Directive):
 
 def setup(app):
     app.add_directive("graphiql", SphinxGraphiQL)
-    app.add_css_file("https://cdn.jsdelivr.net/npm/graphiql@1.0.3/graphiql.css")
-    app.add_js_file(
-        "https://cdn.jsdelivr.net/npm/react@16.13.1/umd/react.production.min.js"
-    )
-    app.add_js_file(
-        "https://cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.production.min.js"
-    )
-    app.add_js_file("https://cdn.jsdelivr.net/npm/graphiql@1.0.3/graphiql.min.js")
+    app.add_css_file("https://unpkg.com/graphiql/graphiql.min.css")
+    app.add_js_file("https://unpkg.com/react/umd/react.production.min.js")
+    app.add_js_file("https://unpkg.com/react-dom/umd/react-dom.production.min.js")
+    app.add_js_file("https://unpkg.com/graphiql/graphiql.min.js")
     app.add_js_file("attachGraphiQL.js")
     src = os.path.join(os.path.dirname(__file__), "attachGraphiQL.js")
     dst = os.path.join(app.outdir, "_static")
