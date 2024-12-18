@@ -59,8 +59,8 @@ class SphinxGraphiQL(Directive):
 def setup(app):
     app.add_directive("graphiql", SphinxGraphiQL)
     app.add_css_file("https://unpkg.com/graphiql/graphiql.min.css")
-    app.add_js_file("https://unpkg.com/react/umd/react.production.min.js")
-    app.add_js_file("https://unpkg.com/react-dom/umd/react-dom.production.min.js")
+    app.add_js_file("https://unpkg.com/react@18/umd/react.production.min.js")
+    app.add_js_file("https://unpkg.com/react-dom@18/umd/react-dom.production.min.js")
     app.add_js_file("https://unpkg.com/graphiql/graphiql.min.js")
     app.add_js_file("attachGraphiQL.js")
     src = os.path.join(os.path.dirname(__file__), "attachGraphiQL.js")
