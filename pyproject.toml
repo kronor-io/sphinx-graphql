@@ -1,3 +1,51 @@
 [build-system]
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta:__legacy__"
+
+[tool.setuptools.package-data]
+"sphinx_graphql" = ["*.js"]
+[tool.setuptools.packages.find]
+exclude = ["tests"]
+
+[project]
+name = "sphinx-graphql"
+version = "1.3.0"
+description = "Sphinx utilities for documenting GraphQL APIs"
+license = "Apache-2.0"
+readme = "README.rst"
+authors = [
+  { name = "Tom Cobb", email = "tom.cobb@diamond.ac.uk"},
+  { name = "Callum Forrester", email = "callum.forrester@diamond.ac.uk"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+]
+dependencies = [
+  "sphinx",
+]
+
+[project.urls]
+Homepage = "https://github.com/dls-controls/sphinx-graphql"
+
+[tool.mypy]
+ignore_missing_imports = true
+
+[tool.isort]
+profile = "black"
+float_to_top = true
+skip = ["setup.py", "conf.py", "build"]
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = [
+  "E203",  # See https://github.com/PyCQA/pycodestyle/issues/373
+  "F811", # support typing.overload decorator
+  "F722", # allow Annotated[typ, some_func("some string")]
+]
+
+[tool.pytest.ini_options]
+# Run pytest with all our checkers, and don't spam us with massive tracebacks on error
+addopts = "--tb=native -vv --flake8 --black --mypy --doctest-modules --doctest-glob=*.rst --cov=sphinx_graphql --cov-report term --cov-report xml:cov.xml"

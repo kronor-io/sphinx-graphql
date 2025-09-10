@@ -56,6 +56,27 @@ class SphinxGraphiQL(Directive):
         return [raw_node]
 
 
+from sphinx.util import logging
+
+logger = logging.getLogger(__name__)
+
+def copy_my_assets(app):
+    src = os.path.join(os.path.dirname(__file__), "attachGraphiQL.js")
+    logger.info("copy_my_assets: src=%s app.outdir=%s", src, getattr(app, "outdir", None))
+
+    if not os.path.isfile(src):
+        logger.warning("attachGraphiQL.js not found at %s", src)
+        return
+
+    dst_dir = os.path.join(app.outdir, "_static")
+    os.makedirs(dst_dir, exist_ok=True)
+
+    try:
+        copy_asset(src, dst_dir)
+        logger.info("Copied %s -> %s", src, dst_dir)
+    except Exception:
+        logger.exception("Failed to copy attachGraphiQL.js")
+
 def setup(app):
     app.add_directive("graphiql", SphinxGraphiQL)
     app.add_css_file("https://unpkg.com/graphiql@1.8.0/graphiql.min.css")
@@ -63,9 +84,7 @@ def setup(app):
     app.add_js_file("https://unpkg.com/react-dom@18/umd/react-dom.production.min.js")
     app.add_js_file("https://unpkg.com/graphiql@1.8.0/graphiql.min.js")
     app.add_js_file("attachGraphiQL.js")
-    src = os.path.join(os.path.dirname(__file__), "attachGraphiQL.js")
-    dst = os.path.join(app.outdir, "_static")
-    copy_asset(src, dst)
+    app.connect("builder-inited", copy_my_assets)
     return {
         "version": "0.1",
         "parallel_read_safe": True,
