@@ -58,10 +58,11 @@ class SphinxGraphiQL(Directive):
 
 def setup(app):
     app.add_directive("graphiql", SphinxGraphiQL)
-    app.add_css_file("https://cdn.jsdelivr.net/npm/graphiql/dist/graphiql.min.css")
+    app.add_css_file("https://esm.sh/graphiql/dist/style.css")
+    app.add_css_file("https://esm.sh/@graphiql/plugin-explorer/dist/style.css")
     app.add_js_file("https://unpkg.com/react@18/umd/react.production.min.js")
     app.add_js_file("https://unpkg.com/react-dom@18/umd/react-dom.production.min.js")
-    app.add_js_file("https://cdn.jsdelivr.net/npm/graphiql/dist/GraphiQL.min.js")
+    app.add_js_file("https://unpkg.com/graphiql@1.8.0/graphiql.min.js")
     app.add_js_file("attachGraphiQL.js")
     src = os.path.join(os.path.dirname(__file__), "attachGraphiQL.js")
     dst = os.path.join(app.outdir, "_static")
